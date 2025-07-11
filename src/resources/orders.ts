@@ -101,7 +101,7 @@ export class OrdersResource extends BaseResource {
    */
   async cancel(orderId: string, reason?: string): Promise<Order> {
     const cancelData = { reason };
-    const response = await this.http.post(`${this.buildPath(orderId)}/cancel`, cancelData);
+    const response = await this.http.post<Order>(`${this.buildPath(orderId)}/cancel`, cancelData);
     return response.data;
   }
 
@@ -110,7 +110,7 @@ export class OrdersResource extends BaseResource {
    */
   async refund(orderId: string, params?: OrderRefundParams): Promise<Refund> {
     const refundData = params || {};
-    const response = await this.http.post(`${this.buildPath(orderId)}/refunds`, refundData);
+    const response = await this.http.post<Refund>(`${this.buildPath(orderId)}/refunds`, refundData);
     return response.data;
   }
 
@@ -122,7 +122,7 @@ export class OrdersResource extends BaseResource {
     qr_code_url: string;
     expires_at: string;
   }> {
-    const response = await this.http.get(`${this.buildPath(orderId)}/pix/qr-code`);
+    const response = await this.http.get<{ qr_code: string; qr_code_url: string; expires_at: string; }>(`${this.buildPath(orderId)}/pix/qr-code`);
     return response.data;
   }
 
@@ -134,7 +134,7 @@ export class OrdersResource extends BaseResource {
     barcode: string;
     expires_at: string;
   }> {
-    const response = await this.http.get(`${this.buildPath(orderId)}/boleto`);
+    const response = await this.http.get<{ boleto_url: string; barcode: string; expires_at: string; }>(`${this.buildPath(orderId)}/boleto`);
     return response.data;
   }
 
@@ -154,7 +154,7 @@ export class OrdersResource extends BaseResource {
     paid_at?: string;
     amount_paid?: number;
   }> {
-    const response = await this.http.get(`${this.buildPath(orderId)}/status`);
+    const response = await this.http.get<{ status: Order['status']; payment_status: string; paid_at?: string; amount_paid?: number; }>(`${this.buildPath(orderId)}/status`);
     return response.data;
   }
 

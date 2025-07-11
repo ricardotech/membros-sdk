@@ -15,7 +15,7 @@ import {
 
 export class CustomersResource extends BaseResource {
   constructor(http: any) {
-    super(http, '/customers');
+    super(http, '/api/v2/customers');
   }
 
   /**
