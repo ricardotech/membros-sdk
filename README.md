@@ -1,4 +1,4 @@
-# @membros/node-sdk
+# membros-sdk
 
 Official Node.js SDK for Membros - Brazilian payment processing made simple.
 
@@ -19,15 +19,15 @@ Official Node.js SDK for Membros - Brazilian payment processing made simple.
 ## Installation
 
 ```bash
-npm install @membros/node-sdk
+npm install membros-sdk
 # or
-yarn add @membros/node-sdk
+yarn add membros-sdk
 ```
 
 ## Quick Start
 
 ```typescript
-import Membros from '@membros/node-sdk';
+import Membros from 'membros-sdk';
 
 // Initialize the client
 const membros = new Membros('sk_test_...', {
